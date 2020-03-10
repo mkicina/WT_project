@@ -1,0 +1,53 @@
+html{
+    background-image: url("article1backg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+h1{
+    font-size: 250%;
+    color: #fff349;
+    text-align: center;
+}
+
+h2{
+    font-size: 250%;
+    color: #fff349;
+    text-decoration: underline;
+    clear: left;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+a{
+    font-size: 120%;
+}
+
+a:visited {
+    color: white; 
+}
+
+ol p {
+    font-size: 120%;
+    color: white;
+
+}
+
+ol img{
+    width: 30%;
+    display: block;
+    margin-left: auto;
+    float: left;
+    margin-right: 2%;
+}
+
+
+#info{
+    float: right;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    font-size: 100%;
+    color: white;
+}

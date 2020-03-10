@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: aquamarine;
+}
+html{
+    background-image: url("cool-background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+h1{
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 4%;
+    font-size: 260%;
+}
+
+#mainimg{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+}
+
+#table{
+    font-size: 250%;
+    font-family: "Lucida Console", Monaco, monospace ;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 3%;
+    margin-left: 20vw;
+}
+
+.tableimg{
+    width: 50%;
+}
+
+
+a{
+    text-decoration:none;
+}
+
+.tableinfo{
+    font-size:50%;
+}
+
+a:visited {
+    color: black;
+}
+
+div {
+
+}
+
+ul {
+    list-style-type: none;
+    width: 75%;
+}
+
+h3 {
+    font-size: 90%;
+    font-family: Helvetica, Verdana, sans-serif;
+    cursor: pointer;
+}
+
+li img {
+    float: top;
+    width: 100%;
+}
+
+li p {
+    font: 200 12px/1.5 Georgia, Times New Roman, serif;
+    margin-left: 2%;
+}
+
+li {
+    overflow: auto;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+
+#info{
+    float: right;
+    margin-right: 2%;
+    margin-bottom: 2%;
+}
