@@ -22,6 +22,8 @@ h2{
     clear: left;
     margin-bottom: 2%;
     margin-top: 2%;
+
+
 }
 
 a{
@@ -39,12 +41,19 @@ ol p {
 }
 
 ol img{
-    width: 50%;
+    width: 25%;
     display: block;
     margin-left: auto;
     float: left;
     margin-right: 2%;
+    transition: width 3s;
+    transition-timing-function: ease;
 }
+
+ol img:hover{
+    width: 50%;
+}
+
 
 
 #info{

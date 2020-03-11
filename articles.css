@@ -68,7 +68,14 @@ h3 {
 li img {
     float: top;
     width: 100%;
+
 }
+
+
+li img:hover{
+    transform: translate(3%,3%);
+}
+
 
 li p {
     font: 200 12px/1.5 Georgia, Times New Roman, serif;
@@ -89,5 +96,19 @@ li {
 }
 
 @media only screen and (max-width: 768px) {
-    
+
+}
+
+.email {
+    width: 64px;
+    height: 64px;
+    top: 50%;
+    left: 50%;
+    background-image: url("email.png");
+    animation: play 1s infinite;
+}
+
+@keyframes play {
+    from { background-position:    0px; }
+    to { background-position: -64px; }
 }

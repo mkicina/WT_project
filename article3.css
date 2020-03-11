@@ -36,11 +36,17 @@ ol p {
 }
 
 ol img{
-    width: 30%;
+    width: 15%;
     display: block;
     margin-left: auto;
     float: left;
     margin-right: 2%;
+    transition: width 3s;
+    transition-timing-function: ease;
+}
+
+ol img:hover{
+    width: 26%;
 }
 
 
