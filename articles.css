@@ -73,7 +73,8 @@ li img {
 
 
 li img:hover{
-    transform: translate(3%,3%);
+    transform: rotateY(360deg);
+    transition-duration: 3s;
 }
 
 
@@ -95,10 +96,6 @@ li {
     margin-bottom: 2%;
 }
 
-@media only screen and (max-width: 768px) {
-
-}
-
 .email {
     width: 64px;
     height: 64px;
@@ -109,6 +106,22 @@ li {
 }
 
 @keyframes play {
-    from { background-position:    0px; }
+    from { background-position:    0; }
     to { background-position: -64px; }
+}
+
+@media only screen and (min-width: 600px){
+    body{
+        min-width: 35rem;
+        max-width: 60rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+@media only screen and (max-width: 599px) {
+    body {
+        width: 100%;
+    }
 }
