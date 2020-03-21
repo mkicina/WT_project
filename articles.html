@@ -76,16 +76,78 @@
 
 <footer>
 <div id="info">
-    <p>Datum vytvorenia: 27. februar 2020, 14:41</p>
-    <p>Autor clanku:
+    <p class="info">Datum vytvorenia: 27. februar 2020, 14:41</p>
+    <p class="info">Autor clanku:
        Martin Kicina</p>
-    <p>email: kicina.martin@gmail.com</p>
+    <p class="info">email: kicina.martin@gmail.com</p>
     <a href="mailto:kicina.martin@gmail.com?subject=Feedback&body=Reakcia_na_vas_blog">
     <div class="email">
     </div>
     </a>
-
 </div>
+    <div id="form">
+    <p id="formIntro">
+        Ak máš záujem tak prosím vyjadri svoj názor ohľadom tejto stránky
+    </p>
+
+
+    <form id="opnFrm">
+
+        <label for="nameElm">Tvoje meno:</label>
+
+        <input type="text" name="login" id="nameElm" size="20"
+               maxlength="50" placeholder="Zadaj svoje meno" required/>
+
+        <br><br>
+
+        <label for="emailElm">Tvoj email:</label>
+
+        <input type="email" id="emailElm" size="20"
+               maxlength="50" placeholder="Zadaj svoj email" required/>
+
+        <br><br>
+
+        <label for="urlElm">Link obrázka:</label>
+
+        <input type="url" id="urlElm" size="20"
+               maxlength="50" placeholder="Zadaj link na obrázok"/>
+
+        <br><br>
+
+        <p>Koľko máš rokov?</p>
+        <input type="radio" id="young" name="age" value="<20">
+        <label for="young">Do 20 rokov</label><br>
+        <input type="radio" id="middle" name="age" value="20-40">
+        <label for="middle">20-40</label><br>
+        <input type="radio" id="old" name="age" value=">40">
+        <label for="old">Nad 40 rokov</label>
+
+        <br><br>
+
+        <p>Ktorý mobil by si si z nasledujúcih kúpil?</p>
+        <input type="checkbox" id="phone1" name="phone1" value="Huawei">
+        <label for="phone1">Huawei Nova 5T</label><br>
+        <input type="checkbox" id="phone2" name="phone2" value="Honor">
+        <label for="phone2">Honor 20</label><br>
+        <input type="checkbox" id="phone3" name="phone3" value="iPhone">
+        <label for="phone3"> iPhone11</label>
+
+
+        <br><br>
+
+        <label for="opnElm">Tvoj názor:</label>
+
+
+        <textarea name="comment" id="opnElm" cols="50" rows="3"
+                  placeholder="Tu vyjadri svoj názor" required></textarea>
+
+        <br><br>
+
+        <button type="submit">Send</button>
+        <button type="reset">Reset</button>
+
+    </form>
+    </div>
 </footer>
 
 </body>

@@ -125,3 +125,35 @@ li {
         width: 100%;
     }
 }
+
+input{
+    color: black;
+
+}
+
+textarea{
+    color: black;
+
+}
+
+footer{
+    margin-bottom: 4%;
+    margin-top: 4%;
+}
+
+#formIntro{
+    font-size: 120%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+
+button{
+    color : black;
+    margin-right: 3%;
+    font-size: 150%;
+}
+
+.info{
+    margin-bottom: 3%;
+    font-size: 110%;
+}
