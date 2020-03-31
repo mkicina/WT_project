@@ -52,10 +52,6 @@ a:visited {
     color: black;
 }
 
-div {
-
-}
-
 ul {
     list-style-type: none;
     width: 75%;
@@ -152,7 +148,7 @@ footer{
     margin-top: 4%;
 }
 
-#formIntro{
+#formIntro {
     font-size: 120%;
     margin-top: 1%;
     margin-bottom: 2%;
@@ -171,4 +167,65 @@ button{
 
 :required {
     border: 2px solid blue;
+}
+
+#form{
+    margin-top: 5%;
+    clear: left;
+}
+
+#info{
+    margin-top: 5%;
+    clear: left;
+}
+
+#opinionsContainer{
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+
+#opinions_headline{
+    font-size: 150%;
+    text-align: center;
+}
+
+#oneOpinion{
+    float: left;
+    width: 50%;
+    text-align: center;
+    margin-bottom: 4%;
+}
+
+#visitorName{
+    font-size: 150%;
+    float: left;
+    margin-left: 20%;
+    /*text-align: left;*/
+}
+
+#visitorEmail{
+    clear: left;
+    float: left;
+    margin-left: 15%;
+}
+
+#interests{
+    clear: left;
+    float: left;
+    margin-left: 15%;
+}
+
+#reason{
+    clear: left;
+    float: left;
+    margin-left: 15%;
+}
+
+#commment{
+    clear: left;
+}
+
+#date{
+    float: right;
+    margin-right: 10%;
 }
