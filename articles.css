@@ -185,7 +185,7 @@ button{
 }
 
 #opinions_headline{
-    font-size: 150%;
+    font-size: 210%;
     text-align: center;
 }
 
@@ -200,6 +200,7 @@ button{
     font-size: 150%;
     float: left;
     margin-left: 20%;
+    margin-bottom: 1%;
     /*text-align: left;*/
 }
 
@@ -207,25 +208,32 @@ button{
     clear: left;
     float: left;
     margin-left: 15%;
+    margin-bottom: 1%;
 }
 
 #interests{
     clear: left;
     float: left;
     margin-left: 15%;
+    margin-bottom: 1%;
 }
 
 #reason{
     clear: left;
     float: left;
     margin-left: 15%;
+    margin-bottom: 1%;
 }
 
 #commment{
     clear: left;
+    float: left;
+    margin-left: 25%;
+    margin-bottom: 1%;
 }
 
 #date{
     float: right;
+    clear: left;
     margin-right: 10%;
 }
