@@ -34,10 +34,15 @@ a:visited {
     color: white;
 }
 
+ol{
+    color: #fff349;
+}
+
 ol p {
     font-size: 120%;
     color: white;
-
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 ol img{

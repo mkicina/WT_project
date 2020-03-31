@@ -32,7 +32,8 @@ a:visited {
 ol p {
     font-size: 120%;
     color: white;
-
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 ol img{

@@ -44,6 +44,8 @@ a{
 
 .tableinfo{
     font-size:50%;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 a:visited {
@@ -119,10 +121,19 @@ li {
     }
 }
 
-
 @media only screen and (max-width: 599px) {
     body {
         width: 100%;
+    }
+    footer{
+        display: flex;
+        flex-flow: column;
+    }
+    #form{
+        order:1;
+    }
+    #info{
+        order:2;
     }
 }
 
@@ -156,4 +167,8 @@ button{
 .info{
     margin-bottom: 3%;
     font-size: 110%;
+}
+
+:required {
+    border: 2px solid blue;
 }
