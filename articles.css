@@ -99,7 +99,7 @@ li {
     height: 64px;
     top: 50%;
     left: 50%;
-    background-image: url("email.png");
+    background-image: url("images/email.png");
     animation: play 1s infinite;
 }
 
@@ -200,7 +200,7 @@ button{
     font-size: 150%;
     float: left;
     margin-left: 20%;
-    margin-bottom: 1%;/
+    margin-bottom: 1%;
 }
 
 #visitorEmail{
