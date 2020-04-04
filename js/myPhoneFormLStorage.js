@@ -61,6 +61,9 @@ let myFrmElm=document.getElementById("opnFrm");
 myFrmElm.addEventListener
 ("submit",processOpnFrmData);
 
+
+
+
 function processOpnFrmData(event){
     //1.prevent normal event (form sending) processing
     event.preventDefault();

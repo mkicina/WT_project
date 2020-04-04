@@ -4,7 +4,7 @@
     color: aquamarine;
 }
 html{
-    background-image: url("cool-background.png");
+    background-image: url("images/cool-background.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -200,8 +200,7 @@ button{
     font-size: 150%;
     float: left;
     margin-left: 20%;
-    margin-bottom: 1%;
-    /*text-align: left;*/
+    margin-bottom: 1%;/
 }
 
 #visitorEmail{
