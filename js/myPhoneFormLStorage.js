@@ -82,7 +82,7 @@ function processOpnFrmData(event){
     const nopIPhone = document.getElementById("phone3");
 
     const nopReason = document.getElementById("reasons");
-    //document.getElementById()
+
     const nopReasonOwn = document.getElementById("whyElm").value.trim();
 
     const nopOpn = document.getElementById("opnElm").value.trim();
@@ -107,32 +107,20 @@ function processOpnFrmData(event){
     }
 
     if (nopHuawei.checked){
-        phoneArr.push("Huawei");
+        phoneArr.push(nopHuawei.value);
     }
     if (nopHonor.checked){
-        phoneArr.push("Honor");
+        phoneArr.push(nopHonor.value);
     }
     if (nopIPhone.checked){
-        phoneArr.push("iPhone");
+        phoneArr.push(nopIPhone.value);
     }
 
-    if (nopReason.id==="vykon"){
-        reasonsArr.push("Vykon");
-    }
-    else if (nopReason.id==="cena"){
-        reasonsArr.push("Cena");
-    }
-    else if (nopReason.id==="vzhlad"){
-        reasonsArr.push("Vzhlad");
-    }
-    else if (nopReason.id==="foto"){
-        reasonsArr.push("Fotoaparat");
-    }
-    else {
+    if (nopReason.id !== "reasons"){
+        reasonsArr.push(nopReason.value);
+    }else{
         reasonsArr.push(nopReasonOwn);
     }
-
-
 
     //3. Add the data to the array opinions and local storage
     const newOpinion =
