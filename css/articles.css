@@ -236,3 +236,7 @@ button{
     clear: left;
     margin-right: 10%;
 }
+
+#urlOfimage{
+    width: 50%;
+}

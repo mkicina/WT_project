@@ -81,8 +81,9 @@ function processOpnFrmData(event){
     const nopHonor = document.getElementById("phone2");
     const nopIPhone = document.getElementById("phone3");
 
-    //const nopReason = document.getElementById("reasons");
-    const nopReason = document.getElementById("vykon");
+    const nopReason = document.getElementById("reasons");
+    //document.getElementById()
+    const nopReasonOwn = document.getElementById("whyElm").value.trim();
 
     const nopOpn = document.getElementById("opnElm").value.trim();
 
@@ -118,15 +119,20 @@ function processOpnFrmData(event){
     if (nopReason.id==="vykon"){
         reasonsArr.push("Vykon");
     }
-    if (nopReason.id==="cena"){
+    else if (nopReason.id==="cena"){
         reasonsArr.push("Cena");
     }
-    if (nopReason.id==="vzhlad"){
+    else if (nopReason.id==="vzhlad"){
         reasonsArr.push("Vzhlad");
     }
-    if (nopReason.id==="foto"){
+    else if (nopReason.id==="foto"){
         reasonsArr.push("Fotoaparat");
     }
+    else {
+        reasonsArr.push(nopReasonOwn);
+    }
+
+
 
     //3. Add the data to the array opinions and local storage
     const newOpinion =

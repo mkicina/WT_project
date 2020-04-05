@@ -56,7 +56,7 @@
             <h3>iPhone 11</h3>
         </a>
 
-            <img class="tableimg" src="css/images/iphone11.png"  alt="iPhone 11">
+            <img class="tableimg" src="css/images/iphone11.png"   alt="iPhone 11">
             </article>
             <p class="tableinfo">iPhone 11 Pro Max v nás zanechal veľmi dobré dojmy.
                 Po predstavení sa hovorilo, že nič revolučné neprináša, čo je síce
@@ -117,7 +117,7 @@
         <label for="urlElm">Link obrázka:</label>
 
         <input type="url" id="urlElm" size="20"
-               maxlength="50" placeholder="Zadaj link na obrázok"/>
+               maxlength="250" placeholder="Zadaj link na obrázok"/>
 
         <br><br>
 
@@ -145,7 +145,7 @@
         <input type="text" name="reason" id="whyElm" size="20"
                maxlength="30" lang="sk" list="reasons"/>
 
-        <datalist id="reasons">
+        <datalist class="reas" id="reasons">
             <option id="vykon">Výkon</option>
             <option id="cena">Cena</option>
             <option id="vzhlad">Vzhľad</option>
@@ -176,6 +176,7 @@
         <p id="visitorEmail">Kontakt: {{email}}</p>
         <p id="interests">Zaujali ma: {{phone}}</p>
         <p id="reason">Dovody preco by som si telefon kupil: {{reason}}</p>
+        <p id="url"><img id="urlOfimage" src={{url}} onerror="" alt=""></p>
         <p id="commment">"{{comment}}"</p>
         <i id="date">{{createdDate}}</i>
 
@@ -188,8 +189,10 @@
 </script>
 
 <script src="js/myPhoneFormLStorage.js"></script>
+
 <script>
     //window.localStorage.clear();
 </script>
+
 </body>
 </html>
