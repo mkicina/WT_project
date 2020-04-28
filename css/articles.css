@@ -240,3 +240,17 @@ button{
 #urlOfimage{
     width: 50%;
 }
+
+.navbar:visited{
+    color: aquamarine;
+}
+
+#main_nav{
+    text-align: center;
+    font-size: 140%;
+    margin-bottom: 5%;
+}
+
+.navbar{
+    margin-left: 5%;
+}
