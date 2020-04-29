@@ -84,6 +84,87 @@ function createHtml4opinions(targetElm){
 }
 
 
+function fetchAndDisplayArticles(targetElm, current, totalCount){
+    const url = "https://wt.kpi.fei.tuke.sk/api/article";
+    let articleList =[];
+    if(current === "0"){
+        current=parseInt(current) + 1;
+        totalCount=parseInt(totalCount) + 1;
+    } else {
+        current=parseInt(current);
+        totalCount=parseInt(totalCount);
+    }
+    const data4rendering={
+        currPage: current,
+        pageCount: totalCount,
+        offset: (current-1) * 20
+    };
+    if(current>1){
+        data4rendering.prevPage=current-1;
+    }
+
+    if(current<totalCount){
+        data4rendering.nextPage=current+1;
+    }
+
+    fetch(url+ "/?max=20" + "&offset=" + data4rendering.offset)
+        .then(response =>{
+            if(response.ok){
+                return response.json();
+            }else{ //if we get server error
+                return Promise.reject(new Error(`Server answered with ${response.status}: ${response.statusText}.`));
+            }
+        })
+        .then(responseJSON => {
+            articleList=responseJSON.articles;
+            return Promise.resolve();
+        })
+        .then( ()=> {
+            let cntRequests = articleList.map(
+                article => fetch(`${url}/${article.id}`)
+            );
+            return Promise.all(cntRequests);
+        })
+        .then(responses =>{
+            let failed="";
+            for(let response of responses) {
+                if(!response.ok) failed+=response.url+" ";
+            }
+            if(failed===""){
+                return responses;
+            }else{
+                return Promise.reject(new Error(`Failed to access the content of the articles with urls ${failed}.`));
+            }
+        })
+        .then(responses => Promise.all(responses.map(resp => resp.json())))
+        .then(articles => {
+            articles.forEach((article,index) =>{
+                articleList[index].content=article.content;
+            });
+
+            return Promise.resolve();
+        })
+        .then( () =>{
+            let data = [];
+            data.articles = articleList;
+            data.currPage = data4rendering.currPage;
+            data.pageCount = data4rendering.pageCount;
+            data.prevPage = data4rendering.prevPage;
+            data.nextPage = data4rendering.nextPage;
+            document.getElementById(targetElm).innerHTML =Mustache.render(document.getElementById("template-articles").innerHTML, data);
+        })
+        .catch (error => { ////here we process all the failed promises
+            const errMsgObj = {errMessage:error};
+            document.getElementById(targetElm).innerHTML =
+                Mustache.render(
+                    document.getElementById("template-articles-error").innerHTML,
+                    errMsgObj
+                );
+        });
+
+    console.log("articleList: " + articleList);
+}
+/*
 function fetchAndDisplayArticles(targetElm){
 
     const url = "http://wt.kpi.fei.tuke.sk/api/article/?max=20&offset=0";
@@ -151,6 +232,6 @@ function fetchAndDisplayArticles(targetElm){
         });
 
 }
-
+*/
 
 
