@@ -9,7 +9,7 @@
 <header>
     <nav id="main_nav">
         <a href="#welcome" class="navbar">Welcome</a>
-        <a href="#articles"class="navbar">Main Content</a>
+        <a href="#articles/1/10"class="navbar">Main Content</a>
         <a href="#opinions"class="navbar">Nazory navstevnikov</a>
         <a href="#addOpinion"class="navbar">Add your opinion</a>
     </nav>
@@ -32,8 +32,23 @@
     </div>
 </script>
 
+
 <script id="template-articles" type="text/template">
+    <h2>Main Content</h2>
+    <p>
+        Displaying page {{currPage}} of {{pageCount}} pages.
+    </p>
+
+    <nav>
+        {{#prevPage}}
+        <a href="#main/{{prevPage}}/{{pageCount}}"><< Previous page</a>
+        {{/prevPage}}
+        {{#nextPage}}
+        <a href="#main/{{nextPage}}/{{pageCount}}">Next page >></a>
+        {{/nextPage}}
+    </nav>
     {{#articles}}
+
     <article>
         <h2>{{title}}</h2>
         <div>

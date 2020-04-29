@@ -18,6 +18,7 @@ export default[
         getTemplate: fetchAndDisplayArticles
     },
 
+
     {
         hash:"opinions",
         target:"router-view",
@@ -56,13 +57,12 @@ function createHtml4Main(targetElm, current,totalCount){
     );
 
 
-    /*
-        return `<h1>Main Content</h1>
+       /* return `<h1>Main Content</h1>
                 ${current} <br>
                 ${totalCount} <br>
                 ${JSON.stringify(data4rendering)}
-                `;
-    */
+                `;*/
+
 }
 
 function createHtml4opinions(targetElm){
@@ -85,7 +85,16 @@ function createHtml4opinions(targetElm){
 
 
 function fetchAndDisplayArticles(targetElm){
-    const url = "https://wt.kpi.fei.tuke.sk/api/article";
+
+    const url = "http://wt.kpi.fei.tuke.sk/api/article/?max=20&offset=0";
+
+
+    const articlesElm = document.getElementById("articles");
+    const errorElm = document.getElementById("error");
+
+    let articleList =[];
+
+
 
     fetch(url)
         .then(response =>{
@@ -96,12 +105,41 @@ function fetchAndDisplayArticles(targetElm){
             }
         })
         .then(responseJSON => {
-            document.getElementById(targetElm).innerHTML =
-                Mustache.render(
-                    document.getElementById("template-articles").innerHTML,
-                    responseJSON
+            articleList=responseJSON.articles;
+            return Promise.resolve();
+        })
+        .then( ()=> {
+            let cntRequests = articleList.map(
+                article => fetch(`${"http://wt.kpi.fei.tuke.sk/api/article"}/${article.id}/${"offset=1"}`)
                 );
+            return Promise.all(cntRequests);
+        })
+        .then(responses =>{
+            let failed="";
+            for(let response of responses) {
+                if(!response.ok) failed+=response.url+" ";
+            }
+            if(failed===""){
+                return responses;
+            }else{
+                return Promise.reject(new Error(`Failed to access the content of the articles with urls ${failed}.`));
+            }
+        })
+        .then(responses => Promise.all(responses.map(resp => resp.json())))
+        .then(articles => {
+            articles.forEach((article,index) =>{
+                articleList[index].content=article.content;
+            });
 
+            return Promise.resolve();
+        })
+        .then( () =>{
+
+            let data = [];
+            data.articles = articleList;
+
+
+            document.getElementById(targetElm).innerHTML =Mustache.render(document.getElementById("template-articles").innerHTML, data);
         })
         .catch (error => { ////here we process all the failed promises
             const errMsgObj = {errMessage:error};
@@ -113,7 +151,6 @@ function fetchAndDisplayArticles(targetElm){
         });
 
 }
-
 
 
 
