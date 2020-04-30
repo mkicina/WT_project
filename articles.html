@@ -32,35 +32,27 @@
     </div>
 </script>
 
-
 <script id="template-articles" type="text/template">
 
-    <p>
-        Displaying page {{currPage}} of {{pageCount}} pages.
-    </p>
-
-    <nav>
-        {{#prevPage}}
-        <a href="#articles/{{prevPage}}/{{pageCount}}" class="menuBar"><< Previous page</a>
-        {{/prevPage}}
-        {{#nextPage}}
-        <a href="#articles/{{nextPage}}/{{pageCount}}"class="menuBar">Next page >></a>
-        {{/nextPage}}
-    </nav>
+    <article class="main_nav">Displaying page {{currPage}} of {{pageCount}} pages.</article>
+    <article class="main_nav">
+        <nav>
+            {{#prevPage}}
+            <a href="#articles/{{prevPage}}/{{pageCount}}" class="main_nav"><< Previous page</a>
+            {{/prevPage}}
+            {{#nextPage}}
+            <a href="#articles/{{nextPage}}/{{pageCount}}" class="main_nav">Next page >></a>
+            {{/nextPage}}
+        </nav>
+    </article>
     {{#articles}}
-
-    <article class="onearticle">
-        <h2><a href="{{detailLink}}" class="menuBar">{{title}}</a></h2>
-        <div>
-
-            {{content}}
-        </div>
+    <article class="main_nav">
+        <h2><a href="{{detailLink}}" class="main_nav">{{title}}</a></h2>
         <p>
             by {{author}}
         </p>
     </article>
     {{/articles}}
-    <footer  class="menuLink"><a href="#menuTitle">Back to the menu</a></footer>
 
 </script>
 
@@ -72,7 +64,7 @@
             {{errMessage}}
         </p>
     </article>
-    <footer  class="menuLink"><a href="#menuTitle">Back to the menu</a></footer>
+    <footer  class="menuLink"><a href="#welcome">Back to the menu</a></footer>
 
 </script>
 
@@ -178,8 +170,8 @@
 
 <script id="template-article" type="text/template">
     <article>
-        <h3>{{title}}</h3>
-        <p>
+        <h3 class="articleone">{{title}}</h3>
+        <p class="articleone">
             by {{author}}
         </p>
         {{#imageLink}}
@@ -187,8 +179,8 @@
             <img src="{{imageLink}}" alt="article figure" />
         </figure>
         {{/imageLink}}
-        <div>{{{content}}}</div>
-        <p>
+        <div class="articleone">{{{content}}}</div>
+        <p class="articleone">
             Keywords:
             {{tags}}
         </p>
@@ -200,33 +192,33 @@
         <a href="{{deleteLink}}" onclick="deleteArticle('serverResponse','https://wt.kpi.fei.tuke.sk/api',)" class="linkAsButton">Delete</a>
     </footer>
     <section>
-        <h2>Vykonanie požiadavky / Request Execution</h2>
-        <div  id="serverResponse"></div>
+
+        <div  id="serverResponse" class="articleone"></div>
     </section>
 
 </script>
 
 <script id="template-article-form" type="text/template">
-    <article>
+    <article class="form">
 
-        <h2>{{formTitle}}</h2>
+        <h2 class="form">{{formTitle}}</h2>
         <br><br>
 
-        <form id="articleForm" onsubmit="return {{formSubmitCall}}">
-            <label for="author">Author:</label>
-            <input type="text" name="author" id="author" value="{{author}}" size="50" title="Article author, max. length 100 characters." maxlength="100" placeholder="e.g. Ján Trieska" />
+        <form id="articleForm" onsubmit="return {{formSubmitCall}}" class="form">
+            <label for="author" >Author:</label>
+            <input class="form" type="text" name="author" id="author" value="{{author}}" size="50" title="Article author, max. length 100 characters." maxlength="100" placeholder="e.g. Ján Trieska" />
             <br>
-            <label for="title">Title:</label>
-            <input type="text" name="title" id="title" value="{{title}}" size="50"  maxlength="100" pattern="\S[\S\s]*" required title="Article title, mandatory item, max. length: 100 characters, the first character must not be a space." placeholder="e.g. My story." />
+            <label for="title" >Title:</label>
+            <input class="form" type="text" name="title" id="title" value="{{title}}" size="50"  maxlength="100" pattern="\S[\S\s]*" required title="Article title, mandatory item, max. length: 100 characters, the first character must not be a space." placeholder="e.g. My story." />
             <br>
             <label for="imageLink">Image (url):</label>
-            <input type="url" name="imageLink" id="imageLink" value="{{imageLink}}" size="50" title="Image URL, max. length 100 characters." maxlength="100"/>
+            <input class="form" type="url" name="imageLink" id="imageLink" value="{{imageLink}}" size="50" title="Image URL, max. length 100 characters." maxlength="100"/>
             <br>
             <label></label><button type="button" id="btShowFileUpload" onclick="showFileUpload()">Upload image</button>
 
             <fieldset class="added hiddenElm" id="fsetFileUpload">
                 <legend>Image Upload</legend>
-                <input type="file" id="flElm" name="file" accept="image/jpeg, image/png"/>
+                <input class="form" type="file" id="flElm" name="file" accept="image/jpeg, image/png"/>
                 <br />
                 <button type="button" id="btFileUpload" onclick="uploadImg('{{urlBase}}')">Send image to server</button>
                 <button type="button" id="btCancelFileUpload" onclick="cancelFileUpload()">Cancel uploading</button>
@@ -259,7 +251,7 @@
 
     <footer>
         <a href="{{backLink}}" class="linkAsButton"><< Back</a>
-        <a href="#menuTitle" class="linkAsButton">Up to the menu</a>
+        <a href="#welcome" class="linkAsButton">Up to the menu</a>
     </footer>
 </script>
 
@@ -267,8 +259,6 @@
 <main id="router-view">
 
 </main>
-
-
 
 <footer>
 

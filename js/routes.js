@@ -64,23 +64,14 @@ function createHtml4opinions(targetElm){
         opinions
     );
 }
+var startCurrent = "0";
+var startTotalCount = undefined;
+getTotalCount();
 
 
-function fetchAndDisplayArticles(targetElm, offsetFromHash, totalCountFromHash){
 
-    const offset=Number(offsetFromHash);
-    const totalCount=Number(totalCountFromHash);
-
-    let urlQuery = "";
-
-    if (offset && totalCount){
-        urlQuery=`?offset=${offset}&max=${articlesPerPage}`;
-    }else{
-        urlQuery=`?max=${articlesPerPage}`;
-    }
-
-    const url = `${urlBase}/article${urlQuery}`;
-
+function getTotalCount(){
+    const url = "https://wt.kpi.fei.tuke.sk/api/article";
     fetch(url)
         .then(response =>{
             if(response.ok){
@@ -90,12 +81,60 @@ function fetchAndDisplayArticles(targetElm, offsetFromHash, totalCountFromHash){
             }
         })
         .then(responseJSON => {
+            console.log(responseJSON.meta.totalCount);
+            startTotalCount = Math.ceil(responseJSON.meta.totalCount / 20);
+        })
+        .catch (error => { ////here we process all the failed promises
+            console.log("Error in totalCount function");
+        });
+}0
+function fetchAndDisplayArticles(targetElm, current, totalCount){
+    const url = "https://wt.kpi.fei.tuke.sk/api/article";
+    // let articleList =[];
+    if(current === undefined || totalCount === undefined){
+        current = startCurrent;
+        totalCount = startTotalCount;
+    }
+
+
+    if(current === "0"){
+        current=parseInt(current) + 1;
+    } else {
+        current=parseInt(current);
+    }
+    startCurrent = current;
+    const data4rendering={
+        currPage: current,
+        offset: (current-1) * 20
+    };
+
+
+    if(current>1){
+        data4rendering.prevPage=current-1;
+    }
+
+    if(current<totalCount){
+        data4rendering.nextPage=current+1;
+    }
+
+    fetch(url+ "/?max=20" + "&offset=" + data4rendering.offset)
+        .then(response =>{
+            if(response.ok){
+                return response.json();
+            }else{ //if we get server error
+                return Promise.reject(new Error(`Server answered with ${response.status}: ${response.statusText}.`));
+            }
+        })
+        .then(responseJSON => {
             addArtDetailLink2ResponseJson(responseJSON);
-            document.getElementById(targetElm).innerHTML =
-                Mustache.render(
-                    document.getElementById("template-articles").innerHTML,
-                    responseJSON
-                );
+
+            let data = [];
+            data.articles = responseJSON.articles;
+            data.currPage = data4rendering.currPage;
+            data.pageCount = startTotalCount;
+            data.prevPage = data4rendering.prevPage;
+            data.nextPage = data4rendering.nextPage;
+            document.getElementById(targetElm).innerHTML =Mustache.render(document.getElementById("template-articles").innerHTML, data);
         })
         .catch (error => { ////here we process all the failed promises
             const errMsgObj = {errMessage:error};
@@ -105,7 +144,10 @@ function fetchAndDisplayArticles(targetElm, offsetFromHash, totalCountFromHash){
                     errMsgObj
                 );
         });
+
 }
+
+
 
 function addArtDetailLink2ResponseJson(responseJSON){
     responseJSON.articles =
@@ -113,7 +155,7 @@ function addArtDetailLink2ResponseJson(responseJSON){
             article =>(
                 {
                     ...article,
-                    detailLink:`#article/${article.id}/${responseJSON.meta.offset}/${responseJSON.meta.totalCount}`
+                    detailLink:`#article/${article.id}/${startCurrent}/${startTotalCount}`
                 }
             )
         );

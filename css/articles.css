@@ -255,6 +255,14 @@ button{
     margin-bottom: 5%;
 }
 
+#main_nav:visited{
+    text-align: center;
+    font-size: 140%;
+    margin-bottom: 5%;
+    color: aquamarine;
+}
+
+
 .navbar{
     margin-left: 5%;
 }
@@ -264,5 +272,26 @@ footer a:visited {
 }
 
 .onearticle{
+    margin-bottom: 3%;
+}
+
+.main_nav{
+    text-align: center;
+    font-size: 120%;
+    margin-bottom: 5%;
+}
+
+.main_nav:visited{
+    text-align: center;
+    font-size: 120%;
+    margin-bottom: 5%;
+    color: aquamarine;
+}
+
+.articleone{
+    font-size: 120%;
+}
+
+.form{
     margin-bottom: 3%;
 }
