@@ -245,6 +245,10 @@ button{
     color: aquamarine;
 }
 
+.menuBar:visited{
+    color: aquamarine;
+}
+
 #main_nav{
     text-align: center;
     font-size: 140%;
@@ -253,4 +257,12 @@ button{
 
 .navbar{
     margin-left: 5%;
+}
+
+footer a:visited {
+    color: aquamarine;
+}
+
+.onearticle{
+    margin-bottom: 3%;
 }

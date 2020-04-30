@@ -8,10 +8,10 @@
 <body>
 <header>
     <nav id="main_nav">
-        <a href="#welcome" class="navbar">Welcome</a>
-        <a href="#articles/1/10"class="navbar">Main Content</a>
+        <a href="#welcome" class="navbar">Vitajte</a>
+        <a href="#articles/1/10"class="navbar">Clanky</a>
         <a href="#opinions"class="navbar">Nazory navstevnikov</a>
-        <a href="#addOpinion"class="navbar">Add your opinion</a>
+        <a href="#addOpinion"class="navbar">Pridaj svoj nazor</a>
     </nav>
 </header>
 
@@ -34,25 +34,23 @@
 
 
 <script id="template-articles" type="text/template">
-    <h2>Main Content</h2>
 
-    
     <p>
         Displaying page {{currPage}} of {{pageCount}} pages.
     </p>
 
     <nav>
         {{#prevPage}}
-        <a href="#articles/{{prevPage}}/{{pageCount}}"><< Previous page</a>
+        <a href="#articles/{{prevPage}}/{{pageCount}}" class="menuBar"><< Previous page</a>
         {{/prevPage}}
         {{#nextPage}}
-        <a href="#articles/{{nextPage}}/{{pageCount}}">Next page >></a>
+        <a href="#articles/{{nextPage}}/{{pageCount}}"class="menuBar">Next page >></a>
         {{/nextPage}}
     </nav>
     {{#articles}}
 
-    <article>
-        <h2>{{title}}</h2>
+    <article class="onearticle">
+        <h2><a href="{{detailLink}}" class="menuBar">{{title}}</a></h2>
         <div>
 
             {{content}}
@@ -77,68 +75,7 @@
     <footer  class="menuLink"><a href="#menuTitle">Back to the menu</a></footer>
 
 </script>
-<!--
-<script id="template-main" type="text/template">
 
-    <div id="table">
-        <ul>
-            <li>
-                <article>
-                    <a href="article1.html">
-                        <h3>Huawei Nova 5T</h3>
-                    </a>
-
-                    <img class="tableimg" src="css/images/huawei.png" alt="Huawei-Nova-5T">
-                </article>
-                <p class="tableinfo">Tento smartfón bol predstavený už dávnejšie,
-                    teraz sa dostáva aj na slovenský trh. Hlavným lákadlom bude
-                    fotoaparát s piatimi objektívmi a bezrámikový displej s dierou
-                    v hornej ľavej časti </p>
-
-            </li>
-
-
-
-            <li>
-                <article>
-                    <a href="article2.html">
-                        <h3>Honor 20</h3>
-                    </a>
-
-                    <img class="tableimg" src="css/images/honor20.png"  alt="Honor 20">
-                </article>
-                <p class="tableinfo">HONOR 20 je smartfónom, ktorý ponúka nielen
-                    najnovšiu verziu operačného systému Android, elegantný vzhľad,
-                    poriadnu dávku výkonu, ale aj fotoaparát, ktorý si doslova
-                    zamilujete okamžite, ako ho začnete používať a platí nielen
-                    počas dňa, ale aj v noci.</p>
-
-            </li>
-
-
-
-            <li>
-                <article>
-                    <a href="article3.html">
-                        <h3>iPhone 11</h3>
-                    </a>
-
-                    <img class="tableimg" src="css/images/iphone11.png"   alt="iPhone 11">
-                </article>
-                <p class="tableinfo">iPhone 11 Pro Max v nás zanechal veľmi dobré dojmy.
-                    Po predstavení sa hovorilo, že nič revolučné neprináša, čo je síce
-                    pravda, ale keď ho chytíte do ruky a začnete s ním pracovať, tak
-                    okamžite pochopíte, že toto je niečo nové – niečo, čo dokáže reálne
-                    zaujať. Precízne spracovanie, oceľový rám, matné zadné sklo, ktoré
-                    nezachytáva žiadne odtlačky, trojica perfektných fotoaparátov
-                    (+ predná kamera) a vpredu výborný OLED displej. </p>
-            </li>
-
-
-        </ul>
-    </div>
-</script>
--->
 
 <script id="template-opinions" type="text/template">
     <article  id="artOpinions">
@@ -239,6 +176,94 @@
     </article>
 </script>
 
+<script id="template-article" type="text/template">
+    <article>
+        <h3>{{title}}</h3>
+        <p>
+            by {{author}}
+        </p>
+        {{#imageLink}}
+        <figure>
+            <img src="{{imageLink}}" alt="article figure" />
+        </figure>
+        {{/imageLink}}
+        <div>{{{content}}}</div>
+        <p>
+            Keywords:
+            {{tags}}
+        </p>
+    </article>
+
+    <footer id="edit">
+        <a href="{{backLink}}" class="linkAsButton"><< Back</a>
+        <a href="{{editLink}}" class="linkAsButton">Edit</a>
+        <a href="{{deleteLink}}" onclick="deleteArticle('serverResponse','https://wt.kpi.fei.tuke.sk/api',)" class="linkAsButton">Delete</a>
+    </footer>
+    <section>
+        <h2>Vykonanie požiadavky / Request Execution</h2>
+        <div  id="serverResponse"></div>
+    </section>
+
+</script>
+
+<script id="template-article-form" type="text/template">
+    <article>
+
+        <h2>{{formTitle}}</h2>
+        <br><br>
+
+        <form id="articleForm" onsubmit="return {{formSubmitCall}}">
+            <label for="author">Author:</label>
+            <input type="text" name="author" id="author" value="{{author}}" size="50" title="Article author, max. length 100 characters." maxlength="100" placeholder="e.g. Ján Trieska" />
+            <br>
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title" value="{{title}}" size="50"  maxlength="100" pattern="\S[\S\s]*" required title="Article title, mandatory item, max. length: 100 characters, the first character must not be a space." placeholder="e.g. My story." />
+            <br>
+            <label for="imageLink">Image (url):</label>
+            <input type="url" name="imageLink" id="imageLink" value="{{imageLink}}" size="50" title="Image URL, max. length 100 characters." maxlength="100"/>
+            <br>
+            <label></label><button type="button" id="btShowFileUpload" onclick="showFileUpload()">Upload image</button>
+
+            <fieldset class="added hiddenElm" id="fsetFileUpload">
+                <legend>Image Upload</legend>
+                <input type="file" id="flElm" name="file" accept="image/jpeg, image/png"/>
+                <br />
+                <button type="button" id="btFileUpload" onclick="uploadImg('{{urlBase}}')">Send image to server</button>
+                <button type="button" id="btCancelFileUpload" onclick="cancelFileUpload()">Cancel uploading</button>
+            </fieldset>
+
+
+            <br>
+            <label for="content">Article content:</label>
+            <textarea
+                    name="content" id="content" spellcheck="true" lang="sk"
+                    cols="50" rows="20" required
+                    title="Article content, mandatory item, can be plain text or in HTML.">{{content}}</textarea>
+            <br>
+            <label for="tags">Keywords:</label>
+            <input  type="text" name="tags" id="tags" value="{{tags}}" size="50"
+                    title="Keyword list, comma separated." placeholder="e.g. village, drama" />
+
+            <br>
+            <br>
+            <button type="reset">
+                Reset Form
+            </button>
+            <button type="submit">
+                {{submitBtTitle}}
+            </button>
+
+        </form>
+
+    </article>
+
+    <footer>
+        <a href="{{backLink}}" class="linkAsButton"><< Back</a>
+        <a href="#menuTitle" class="linkAsButton">Up to the menu</a>
+    </footer>
+</script>
+
+
 <main id="router-view">
 
 </main>
@@ -258,6 +283,9 @@
 <script  type="module" src="js/index.js"></script>
 
 <script src="js/myPhoneFormLStorage.js"></script>
+
+
+<script src="js/handleArticleForms.js"></script>
 
 <script>
     //window.localStorage.clear();
